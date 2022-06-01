@@ -1,0 +1,52 @@
+:root { 
+    --black: #000; 
+    --white: #FFF;
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0%; 
+}
+
+html { 
+    font-size: 62.5%;  
+}
+.container {
+    background-color: papayawhip;
+    
+}
+
+.cards-container {
+    min-width: 320px;
+    margin: 12px auto 0;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 15px;
+}
+
+.card {
+    width: 100%;
+    grid-template-columns: 1fr;
+    align-items: center;
+    border: 3px solid aquamarine;
+}
+
+figure {
+    height: 480px;
+    overflow: hidden;
+}
+
+img {
+    object-fit:fill;
+    width: 100%;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+}
