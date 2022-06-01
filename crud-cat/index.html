@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./styles.css">
+
+    <title>Gatos aleatorios</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>App de gatos</h1>
+        <span id="error"></span>
+        <section class="random-cats">
+            <h2>Gatos aletorios</h2>
+            <div class="cards-container">
+                <article class="card random-card">
+                    <figure>
+                        <img id="img1" alt="Fotos de gatos aleatoria">
+                    </figure>
+                    <button id="btn-add-favorites-1" class="button add-to-favorites" onclick="saveFavouriteCat()">
+                        Añadir a favoritos
+                    </button>
+                </article>
+                <article class="card random-card">
+                    <figure>
+                        <img id="img2" alt="Fotos de gatos aleatoria">
+                    </figure>
+                    <button id="btn-add-favorites-2" class="button add-to-favorites" onclick="saveFavouriteCat()">
+                        Añadir a favoritos
+                    </button>
+                </article>
+            </div>
+            <div class="button-wrapper">
+                <button onclick="loadRandomCats()">Recargar</button>
+            </div>
+        </section>
+        <section class="favorites-cats">
+            <h2>Gatos favoritos</h2>
+            <article class="card random-card">
+                <figure>
+                    <img id="img1" alt="Fotos de gatos aleatoria">
+                </figure>
+                <button class="button add-to-favorites">Añadir a favoritos</button>
+            </article>
+        </section>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
