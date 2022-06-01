@@ -45,5 +45,8 @@ img {
 }
 
 .button-wrapper {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
 }
