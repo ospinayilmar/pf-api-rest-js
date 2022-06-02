@@ -1,10 +1,10 @@
-// console.log("Hola");
-
-const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=3&api_key=e5d342a6-0a3e-45b0-af35-692a7a700d6a";
-const API_URL_FAVOURITES = "https://api.thecatapi.com/v1/favourites?limit=100&api_key=e5d342a6-0a3e-45b0-af35-692a7a700d6a";
+const API_KEY = "api_key=e5d342a6-0a3e-45b0-af35-692a7a700d6a";
+const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=3";
+const API_URL_FAVOURITES = "https://api.thecatapi.com/v1/favourites";
+const API_URL_FAVOURITES_DELETE = "https://api.thecatapi.com/v1/favourites/";
 
 async function loadRandomCats() {
-    const res = await fetch(API_URL_RANDOM);
+    const res = await fetch(`${API_URL_RANDOM}&${API_KEY}`);
     let data = await res.json();
 
     console.log('Gatos aleatorios: ', data);
@@ -28,9 +28,8 @@ async function loadRandomCats() {
 }
 
 async function loadFavouritesCats() {
-    const res = await fetch(API_URL_FAVOURITES);
+    const res = await fetch(`${API_URL_FAVOURITES}?${API_KEY}`);
     let data = await res.json();
-    console.log('Gatos favoritos: ', data);
 
     if (res.status !== 200) {
         console.log(res);
@@ -38,8 +37,19 @@ async function loadFavouritesCats() {
         let errorSpan = document.getElementById('error');
         errorSpan.innerHTML = "Hubo un error al cargar los gatos favoritos - Error: " + res.status + " " + data.message;
     } else {
+        const section = document.getElementById('favourites-cats');
+        section.innerHTML = "";
+
+        const h2 = document.createElement('h2');
+        const h2Text = document.createTextNode('Gatos favoritos');
+        h2.appendChild(h2Text);
+        section.appendChild(h2);
+
+        const container = document.createElement('div');
+        container.classList.add('favourites-cats-grid');
+        section.appendChild(container);
+
         data.forEach(cat => {
-            const section = document.getElementById('favourites-cats-grid');
 
             const article = document.createElement('article');
             article.classList.add('card', 'favourite-card');
@@ -51,18 +61,20 @@ async function loadFavouritesCats() {
 
             const btn = document.createElement('button');
             btn.classList.add('btn', 'btn-remove');
+            btn.onclick = () => deleteFavouriteCat(cat.id);
             const btnText = document.createTextNode('Quitar de los favoritos');
             btn.appendChild(btnText);
 
-            article.appendChild(figure, btn);
-            section.appendChild(article);
+            article.appendChild(figure);
+            article.appendChild(btn);
+            container.appendChild(article);
         });
     }
 }
 
 async function saveFavouriteCat(id) {
-    const res = await fetch(API_URL_FAVOURITES, {
-        method: 'post',
+    const res = await fetch(`${API_URL_FAVOURITES}?${API_KEY}`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -75,8 +87,25 @@ async function saveFavouriteCat(id) {
     if (res.status !== 200) {
         let errorSpan = document.getElementById('error');
         errorSpan.innerHTML = "Hubo un error al guardar el gato - Error: " + res.status + " " + data.message;
+    } else {
+        console.log('gato guardado en favoritos ', data.message);
+        loadFavouritesCats();
     }
-    console.log('Respuesta: ', data.message);
+}
+
+async function deleteFavouriteCat(id) {
+    const res = await fetch(`${API_URL_FAVOURITES_DELETE}${id}?${API_KEY}`, {
+        method: 'DELETE',
+    });
+
+    const data = await res.json();
+    if (res.status !== 200) {
+        let errorSpan = document.getElementById('error');
+        errorSpan.innerHTML = "Hubo un error al guardar el gato - Error: " + res.status + " " + data.message;
+    } else {
+        console.log('Gato eliminado de tus favoritos ', data.message);
+        loadFavouritesCats();
+    }
 }
 
 loadRandomCats();
