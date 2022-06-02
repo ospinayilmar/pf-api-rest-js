@@ -1,20 +1,20 @@
-:root { 
-    --black: #000; 
+:root {
+    --black: #000;
     --white: #FFF;
 }
 
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0%; 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0%;
 }
 
-html { 
-    font-size: 62.5%;  
+html {
+    font-size: 62.5%;
 }
+
 .container {
     background-color: papayawhip;
-    
 }
 
 .cards-container {
@@ -31,7 +31,11 @@ html {
     width: 100%;
     grid-template-columns: 1fr;
     align-items: center;
-    border: 3px solid aquamarine;
+    /* border: 3px solid aquamarine; */
+    border-radius: 16px;
+    border: 1px solid #FFF;
+    box-shadow: #FFF;
+    overflow: hidden;
 }
 
 figure {
@@ -40,7 +44,7 @@ figure {
 }
 
 img {
-    object-fit:fill;
+    object-fit: fill;
     width: 100%;
 }
 
@@ -49,4 +53,16 @@ img {
     justify-content: center;
     align-items: center;
     padding: 16px 0;
+}
+
+.favourites-cats {
+    min-width: 380px;
+    max-width: 760px;
+    margin: 12px auto;
+}
+
+.favourites-cats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }

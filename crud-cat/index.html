@@ -22,7 +22,7 @@
                     <figure>
                         <img id="img1" alt="Fotos de gatos aleatoria">
                     </figure>
-                    <button id="btn-add-favorites-1" class="button add-to-favorites" onclick="saveFavouriteCat()">
+                    <button id="btn-add-favourites-1" class="button add-to-favourites">
                         Añadir a favoritos
                     </button>
                 </article>
@@ -30,7 +30,7 @@
                     <figure>
                         <img id="img2" alt="Fotos de gatos aleatoria">
                     </figure>
-                    <button id="btn-add-favorites-2" class="button add-to-favorites" onclick="saveFavouriteCat()">
+                    <button id="btn-add-favourites-2" class="button add-to-favourites" onclick="saveFavouriteCat('nui')">
                         Añadir a favoritos
                     </button>
                 </article>
@@ -39,14 +39,18 @@
                 <button onclick="loadRandomCats()">Recargar</button>
             </div>
         </section>
-        <section class="favorites-cats">
+
+        <section id="favourites-cats" class="favourites-cats">
             <h2>Gatos favoritos</h2>
-            <article class="card random-card">
+            <div id="favourites-cats-grid" class="favourites-cats-grid">
+
+                <!-- <article class="card favourite-card">
                 <figure>
                     <img id="img1" alt="Fotos de gatos aleatoria">
                 </figure>
-                <button class="button add-to-favorites">Añadir a favoritos</button>
-            </article>
+                <button class="button remove-to-favourites">Quitar a favoritos</button>
+            </article> -->
+            </div>
         </section>
     </div>
 
